@@ -9,32 +9,32 @@ int	main()
 	ios::sync_with_stdio(0),cin.tie(0);
 
 	char	s[51];
-	int	n = 0, res = 0;
+	int	n = 0, res = 0, minus = 1, tmp = 0;
 
 	cin >> s;
 	for (int i = 0; s[i]; i++)
 	{
-		if (s[i] <= '9' || s[i] >= '0')
-			n = n * 10 + s[i] - '0';
-		else if (s[i] == '+' || s[i] == '-')
+		while (s[i] && s[i] <= '9' && s[i] >= '0')
+			n = n * 10 + s[i++] - '0';
+		if (s[i] == '+')
 		{
-			res += n;
+			tmp += n;
 			n = 0;
 		}
-		cout << "i: " << i << " n: " << n << " res: " << res << '\n';
-		if (s[i] == '-')
+		else if (s[i] == '-' || s[i] == '\0')
 		{
-			i++;
-			while (s[i] && s[i] != '-') // 숫자가아니면
-			{
-				int	tmp = 0;
-				i++;
-				while (s[i] && s[i] <= '9' && s[i] >= '0')
-					tmp = tmp * 10 + s[i++] - '0';
-				res -= tmp;
-			}
+			tmp += n;
+			res += minus * tmp; // 처음 한번만 더하고 그 후부턴 빼기만 해야함
+			tmp = 0;
+			n = 0;
+			minus = -1;
 		}
+		if (s[i] == '\0')
+		{
+			cout << res;
+			return 0;
+		}
+		// cout << "i: " << i << " n: " << n << " tmp: " << tmp << " res:" << res << '\n';
 	}
-	cout << res;
 }
 
