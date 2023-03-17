@@ -8,7 +8,7 @@ int	main()
 {
 	ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
 
-	int	n, max_len, start, endd;
+	int	n, res = 0, start = -1000000000, endd = -1000000000;
 
 	cin >> n;
 	pair<int, int>	arr[n];
@@ -20,25 +20,18 @@ int	main()
 		arr[i].second = b;
 	}
 	sort(arr, arr + n);
-	start = arr[0].first;
-	endd = arr[0].second;
-	max_len = endd - start;
-	int	t_start, t_endd, t_max_len;
-	for (int i = 1; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		if (arr[i].first > endd)
-		{
-			endd = arr[i].second;
-			max_len = endd - start;
-		}
+		if (arr[i].first <= endd)
+			endd = max(endd, arr[i].second);
 		else
 		{
-			while (i < n && arr[i].first > t_endd)
-			{
-				t_endd = arr[i].second; 
-			}
+			res += endd - start;
+			start = arr[i].first;
+			endd = arr[i].second;
 		}
-
-		// cout << arr[i].first << ' ' << arr[i].second << '\n';
+		// cout << start << " " << res << " " << endd << '\n';
 	}
+	res += endd - start;
+	cout << res;
 }
