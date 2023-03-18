@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iostream>// 입출력 가능하게 하는 헤더
+#include <list>
 using namespace	std;
 
 int	main()
@@ -11,7 +12,9 @@ int	main()
 	int	n, k;
 
 	cin >> n >> k;
-	int	plug[n];
+	int	plug[n], input[k];
 
-	d
+	for (int i = 0; i < k; i++)
+		cin >> input[i];
+	
 }

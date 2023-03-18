@@ -35,6 +35,7 @@ int	main()
 			return 0;
 		}
 		// cout << "i: " << i << " n: " << n << " tmp: " << tmp << " res:" << res << '\n';
+
 	}
 }
 
